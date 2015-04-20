@@ -1,6 +1,7 @@
 __author__ = 'alvaro'
 
 from Queue import PriorityQueue
+from Ambiente import Ambiente
 
 class Asterisco:
 
@@ -8,6 +9,7 @@ class Asterisco:
 
     def __init__(self):
         self.queuePrio = PriorityQueue()
+	self.miAmbiente = Ambiente("archivo.txt")
 
 
     def getExpandiblesAsterisco(self, pos, nivel, costo):
@@ -49,3 +51,5 @@ class Asterisco:
 
         #la solucion se filtra en el nivel de la meta
         return solucion[0:nivel]
+
+
