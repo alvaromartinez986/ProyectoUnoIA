@@ -17,7 +17,7 @@ class Ambiente:
             splitLinea = linea.split(' ')
             print(splitLinea)
             for j in range(0, self.tamano):
-                self.matriz[i][j]= splitLinea[j]
+                self.matriz[i][j]= int(splitLinea[j])
 		if((int(splitLinea[j]))==0):
 			self.initPos =[i, j]
 		if((int(splitLinea[j]))==7):
@@ -42,9 +42,9 @@ class Ambiente:
             return -1
         if(y<0):
             return -1
-        if(x>self.tamano):
+        if(x>self.tamano-1):
             return -1
-        if (y>self.tamano):
+        if (y>self.tamano-1):
             return -1
         else:
             return self.matriz[x][y]

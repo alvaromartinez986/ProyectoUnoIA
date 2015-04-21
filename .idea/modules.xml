@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IA.iml" filepath="$PROJECT_DIR$/.idea/IA.iml" />
-      <module fileurl="file://$USER_HOME$/bittorrentnetwork/.idea/bittorrentnetwork.iml" filepath="$USER_HOME$/bittorrentnetwork/.idea/bittorrentnetwork.iml" />
     </modules>
   </component>
 </project>
