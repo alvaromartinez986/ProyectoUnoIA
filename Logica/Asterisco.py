@@ -10,6 +10,7 @@ class Asterisco:
     def __init__(self):
         self.queuePrio = PriorityQueue()
 	self.miAmbiente = Ambiente("archivo.txt")
+	self.buscarAsterico()
 
 
     def getExpandiblesAsterisco(self, pos, nivel, costo):
@@ -35,21 +36,24 @@ class Asterisco:
 
         nivel = 0
 
-        posicionActual = self.miAmbiente.posIniRobot().append(nivel)
+        posicionActual = self.miAmbiente.posIniRobotConNivel()
         posicionMeta = self.miAmbiente.posMeta()
 
-        self.queuePrio.put((0, posicionActual))
+        self.queuePrio.put(posicionActual)
 
         solucion = []
         #abajo, derecha, izquierda, arriba
         while (posicionActual[0:1]!=posicionMeta):
             posicionActual = self.queuePrio.get()[1:]
+	    print posicionActual
             nivel= posicionActual[2]
             solucion[nivel] = posicionActual[0:1]
             self.getExpandibles(posicionActual, nivel+1)
 
 
         #la solucion se filtra en el nivel de la meta
+	print solucion
         return solucion[0:nivel]
 
+obj = Asterisco()
 

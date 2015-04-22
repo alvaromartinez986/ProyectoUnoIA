@@ -3,10 +3,11 @@ __author__ = 'alvaro'
 
 class Ambiente:
 
-
    
     def __init__(self, ruta):
 
+        self.initPos = []
+        self.metaPos = []
         archi=open(ruta,'r')
         linea = archi.readline()
         self.tamano= int(linea)
@@ -19,13 +20,20 @@ class Ambiente:
             for j in range(0, self.tamano):
                 self.matriz[i][j]= int(splitLinea[j])
 		if((int(splitLinea[j]))==0):
-			self.initPos =[i, j]
+			self.initPos.append(i)
+			self.initPos.append(j)
+			self.initPos.append(0)
+			self.initPos.append(0)
 		if((int(splitLinea[j]))==7):
-			self.metaPos = [i, j]
+			self.metaPos.append(i)
+			self.metaPos.append(j)
 			
         archi.close()
 
-    def posIniRobot(self):
+    def posIniRobotConNivel(self):
+		return self.initPos[:2]
+
+    def posIniRobotConCosto(self):
 		return self.initPos
 
     def posMeta(self):
