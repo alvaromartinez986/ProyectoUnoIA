@@ -31,7 +31,7 @@ class Ambiente:
         archi.close()
 
     def posIniRobotConNivel(self):
-		return self.initPos[:2]
+		return self.initPos[:3]
 
     def posIniRobotConCosto(self):
 		return self.initPos
@@ -56,6 +56,25 @@ class Ambiente:
             return -1
         else:
             return self.matriz[x][y]
+
+    def getCosto(self, x, y):
+	'''
+         Metodo para retornar el costo del ambiente en la posicion x , y
+         x valor de la fila del ambiente
+         y valor de la columna del ambiente
+        '''
+	if(self.getPosition(x, y)==2):
+	    return 1
+        elif(self.getPosition(x,y)==3):
+	    return 3
+	elif(self.getPosition(x,y)==4):
+	    return 4
+	elif(self.getPosition(x, y)==5):
+	    return 6
+	elif(self.getPosition(x, y)==6):
+	    return 5
+	else:
+	    return 0
 
 
 

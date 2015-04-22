@@ -18,16 +18,16 @@ class Asterisco:
         #arriba
         #si entrega -1 o 1, no existe la posicion o hay una pared respectivamente
         if(abs(self.miAmbiente.getPosition(pos[0]-1,pos[1]))!=1):
-            self.queuePrio.put((costo+self.miAmbiente.getCosto(self.miAmbiente.getPosition(pos[0]-1,pos[1], pos[0]-1,pos[1], nivel))))
+            self.queuePrio.put([costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], nivel])
         #izquierda
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]-1))!=1):
-            self.queuePrio.put((costo+ self.miAmbiente.getCosto(self.miAmbiente.getPosition(pos[0],pos[1]-1), pos[0],pos[1]-1, nivel)))
-        #derecha
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, nivel])
+        #derech
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]+1))!=1):
-            self.queuePrio.put((costo+ self.miAmbiente.getCosto(self.miAmbiente.getPosition(pos[0],pos[1]+1)), pos[0],pos[1]+1, nivel))
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, nivel])
         #abajo
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
-            self.queuePrio.put(((costo+ self.miAmbiente.getCosto(self.miAmbiente.getPosition(pos[0]+1,pos[1])) , pos[0]+1,pos[1], nivel)))
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], nivel])
 
 
 
@@ -36,19 +36,25 @@ class Asterisco:
 
         nivel = 0
 
-        posicionActual = self.miAmbiente.posIniRobotConNivel()
+        posicionActual = self.miAmbiente.posIniRobotConCosto()
         posicionMeta = self.miAmbiente.posMeta()
 
         self.queuePrio.put(posicionActual)
-
+	posicionActual  = posicionActual[1:]
+	print posicionActual
         solucion = []
         #abajo, derecha, izquierda, arriba
-        while (posicionActual[0:1]!=posicionMeta):
-            posicionActual = self.queuePrio.get()[1:]
-	    print posicionActual
+        while (posicionActual[0:2]!=posicionMeta):
+	    posicionAcConCosto = self.queuePrio.get()
+	    print posicionAcConCosto
+            posicionActual = posicionAcConCosto[1:]
             nivel= posicionActual[2]
-            solucion[nivel] = posicionActual[0:1]
-            self.getExpandibles(posicionActual, nivel+1)
+	    if (len(solucion)>nivel):
+		solucion[nivel] = posicionActual[0:2]
+	    else:
+		solucion.append(posicionActual[0:2])
+
+            self.getExpandiblesAsterisco(posicionActual, posicionAcConCosto[0], nivel+1)
 
 
         #la solucion se filtra en el nivel de la meta
