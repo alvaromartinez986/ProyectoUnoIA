@@ -36,27 +36,25 @@ class Asterisco:
         posicionActual = self.miAmbiente.posIniRobotConCosto()
         posicionMeta = self.miAmbiente.posMeta()
 
+        print posicionActual
+
         self.queuePrio.put(posicionActual)
         posicionActual  = posicionActual[1:]
-        print posicionActual
-        solucion = []
+
+
         #abajo, derecha, izquierda, arriba
         while (posicionActual[0:2]!=posicionMeta):
             posicionAcConCosto = self.queuePrio.get()
             print posicionAcConCosto
             posicionActual = posicionAcConCosto[1:]
-            nivel= posicionActual[2]
-            if (len(solucion)>nivel):
-                solucion[nivel] = posicionActual[0:2]
-            else:
-                solucion.append(posicionActual[0:2])
+
 
             self.getExpandiblesAsterisco(posicionActual, posicionAcConCosto[0])
 
 
         #la solucion se filtra en el nivel de la meta
-        print solucion
-        return solucion[0:nivel]
+        print posicionActual[2]
+        #return solucion[0:nivel]
 
 
 obj = Asterisco()

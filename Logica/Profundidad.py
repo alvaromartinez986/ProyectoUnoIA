@@ -41,15 +41,13 @@ class Profundidad:
 
 		nivel = 0
 
-		lisPosicionActual = [0,1]
-		posicionActual = [0,1,0]
+		posicionActual = self.miAmbiente.posIniRobotConNivel()
 		posicionMeta = self.miAmbiente.posMeta()
 
 		pila = [posicionActual]
 
 		solucion = []
 		#abajo, derecha, izquierda, arriba
-		print posicionActual[0:2]
 		while (posicionActual[0:2]!=posicionMeta):
 			posicionActual = pila.pop()
 			nivel= posicionActual[2]
@@ -67,6 +65,7 @@ class Profundidad:
 				print hijos
 
 		#la solucion se filtra en el nivel de la meta
+		print "solucion ",solucion 
 		return solucion[0:nivel]
 
 profund = Profundidad()
