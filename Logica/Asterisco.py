@@ -16,16 +16,16 @@ class Asterisco:
         #arriba
         #si entrega -1 o 1, no existe la posicion o hay una pared respectivamente
         if(abs(self.miAmbiente.getPosition(pos[0]-1,pos[1]))!=1):
-            self.queuePrio.put([costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], pos[2] + '(' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #izquierda
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]-1))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, pos[2] + '(' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #derech
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]+1))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, pos[2] + '(' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #abajo
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[2] + '(' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
 
 
     def buscarAsterico(self):
@@ -53,8 +53,8 @@ class Asterisco:
 
 
         #la solucion se filtra en el nivel de la meta
-        print posicionActual[2]
-        #return solucion[0:nivel]
+        print posicionActual[2].split(' ')
+        return posicionActual[2].split(' ')
 
 
 obj = Asterisco()
