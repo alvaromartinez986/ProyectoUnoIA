@@ -27,6 +27,11 @@ class Asterisco:
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
             self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
 
+    #calcula la distancia en l a la meta a partir de un punto x, y hasta una meta
+    def getDistanciaL(self, x, y, meta):
+        res  = abs(meta[0]-x)+abs(meta[1]-y)
+        return res
+
 
     def buscarAsterico(self):
 
