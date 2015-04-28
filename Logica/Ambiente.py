@@ -20,10 +20,10 @@ class Ambiente:
             for j in range(0, self.tamano):
                 self.matriz[i][j]= int(splitLinea[j])
 		if((int(splitLinea[j]))==0):
+			self.initPos.append(0)
 			self.initPos.append(i)
 			self.initPos.append(j)
-			self.initPos.append(0)
-			self.initPos.append(0)
+			self.initPos.append('')
 		if((int(splitLinea[j]))==7):
 			self.metaPos.append(i)
 			self.metaPos.append(j)
