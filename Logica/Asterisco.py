@@ -16,20 +16,20 @@ class Asterisco:
         #arriba
         #si entrega -1 o 1, no existe la posicion o hay una pared respectivamente
         if(abs(self.miAmbiente.getPosition(pos[0]-1,pos[1]))!=1):
-            self.queuePrio.put([costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([self.getDistanciaL(pos[0]-1,pos[1]) + costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #izquierda
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]-1))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]-1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #derech
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]+1))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]+1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #abajo
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]+1) + costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
 
     #calcula la distancia en l a la meta a partir de un punto x, y hasta una meta
-    def getDistanciaL(self, x, y, meta):
-        res  = abs(meta[0]-x)+abs(meta[1]-y)
+    def getDistanciaL(self, x, y):
+        res  = abs(self.meta[0]-x)+abs(self.meta[1]-y)
         return res
 
 
@@ -39,7 +39,7 @@ class Asterisco:
         nivel = 0
 
         posicionActual = self.miAmbiente.posIniRobotConCosto()
-        posicionMeta = self.miAmbiente.posMeta()
+        self.meta = self.miAmbiente.posMeta()
 
         print posicionActual
 
@@ -48,18 +48,19 @@ class Asterisco:
 
 
         #abajo, derecha, izquierda, arriba
-        while (posicionActual[0:2]!=posicionMeta):
-            posicionAcConCosto = self.queuePrio.get()
-            print posicionAcConCosto
-            posicionActual = posicionAcConCosto[1:]
+        while (posicionActual[0:2]!=self.meta):
+            pos_ac_costo_heur = self.queuePrio.get()
+            print pos_ac_costo_heur
+            posicionActual = pos_ac_costo_heur[1:]
 
 
-            self.getExpandiblesAsterisco(posicionActual, posicionAcConCosto[0])
+            self.getExpandiblesAsterisco(posicionActual, pos_ac_costo_heur[0])
 
 
         #la solucion se filtra en el nivel de la meta
-        print posicionActual[2].split(' ')
-        return posicionActual[2].split(' ')
+        solucion = posicionActual[2].split(' ') + [('('+ str(self.meta[0]) + ',' + str(self.meta[1]) + ')')]
+        print solucion
+        return solucion
 
 
 obj = Asterisco()
