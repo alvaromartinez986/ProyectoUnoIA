@@ -16,16 +16,16 @@ class Asterisco:
         #arriba
         #si entrega -1 o 1, no existe la posicion o hay una pared respectivamente
         if(abs(self.miAmbiente.getPosition(pos[0]-1,pos[1]))!=1):
-            self.queuePrio.put([costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #izquierda
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]-1))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #derech
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]+1))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
         #abajo
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
-            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[2] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
+            self.queuePrio.put([costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]) , pos[0]+1,pos[1], pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')'])
 
     #calcula la distancia en l a la meta a partir de un punto x, y hasta una meta
     def getDistanciaL(self, x, y, meta):
@@ -38,7 +38,7 @@ class Asterisco:
 
         nivel = 0
 
-        posicionActual = self.miAmbiente.posIniRobotConCosto()
+        posicionActual = self.miAmbiente.posIniRobotConSln()
         posicionMeta = self.miAmbiente.posMeta()
 
         print posicionActual
