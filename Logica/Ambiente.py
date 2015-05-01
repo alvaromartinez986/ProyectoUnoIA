@@ -62,7 +62,7 @@ class Ambiente:
          x valor de la fila del ambiente
          y valor de la columna del ambiente
         '''
-        if (self.getPosition(x, y) == 2)|(self.getPosition(x, y) == 0):
+        if (self.getPosition(x, y) == 2)|(self.getPosition(x, y) == 0)|(self.getPosition(x, y) == 7):
             return 1
         elif (self.getPosition(x, y) == 3):
             return 3

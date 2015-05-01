@@ -47,7 +47,7 @@ class Profundidad:
         posicionActual = self.miAmbiente.posIniRobotConNivel()
         posicionMeta = self.miAmbiente.posMeta()
         
-        limitacion = pow(self.miAmbiente.tamano, 2)
+        limitacion = 19
 
         pila = [posicionActual]
 
@@ -59,6 +59,7 @@ class Profundidad:
         while (posicionActual[1:3]!=posicionMeta)&(len(pila)!=0):
             hijos=[]
             posicionActual = pila.pop()
+
             nivel= posicionActual[0]
             carga = posicionActual[3]
             if self.miAmbiente.getPosition(posicionActual[1],posicionActual[2])== 6:
@@ -76,7 +77,7 @@ class Profundidad:
             if len(hijos)!=0:
                 pila.extend(hijos)
                 #print hijos
-            #print pila
+           # print pila
 
 
         if posicionActual[1:3]!=posicionMeta:
