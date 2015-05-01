@@ -19,22 +19,22 @@ class Profundidad:
         #print self.miAmbiente.getPosition(pos[0]-1,pos[1])
         #si entrega -1 o 1, no existe la posicion o hay una pared respectivamente
         if(abs(self.miAmbiente.getPosition(pos[0]-1,pos[1]))!=1):
-            hijos.append([pos[0]-1,pos[1], nivel, carga])
+            hijos.append([nivel, pos[0]-1,pos[1], carga])
         #izquierda
         #print "izq"
         #print self.miAmbiente.getPosition(pos[0],pos[1]-1)
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]-1))!=1):
-            hijos.append([pos[0],pos[1]-1, nivel, carga])
+            hijos.append([nivel, pos[0],pos[1]-1, carga])
         #derecha
         #print "der"
         #print self.miAmbiente.getPosition(pos[0],pos[1]+1)
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]+1))!=1):
-            hijos.append([pos[0],pos[1]+1, nivel, carga])
+            hijos.append([nivel, pos[0],pos[1]+1, carga])
         #abajo
         #print "aba"
         #print self.miAmbiente.getPosition(pos[0]+1,pos[1])
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
-            hijos.append([pos[0]+1,pos[1], nivel, carga])
+            hijos.append([nivel, pos[0]+1,pos[1], carga])
 
         return hijos
     
@@ -51,25 +51,27 @@ class Profundidad:
 
         pila = [posicionActual]
 
+        print posicionActual
+        print posicionActual[1:3]
+
         solucion = []
         #abajo, derecha, izquierda, arriba
-        while (posicionActual[0:2]!=posicionMeta)&(len(pila)!=0):
+        while (posicionActual[1:3]!=posicionMeta)&(len(pila)!=0):
             hijos=[]
             posicionActual = pila.pop()
-            nivel= posicionActual[2]
+            nivel= posicionActual[0]
             carga = posicionActual[3]
-
-            if self.miAmbiente.getPosition(posicionActual[0],posicionActual[1])== 6:
+            if self.miAmbiente.getPosition(posicionActual[1],posicionActual[2])== 6:
                 carga =6
-            print carga
+
             if len(solucion)>nivel:
-                solucion[nivel] = posicionActual[0:2]
+                solucion[nivel] = posicionActual[1:3]
             else:
-                solucion.append(posicionActual[0:2])
+                solucion.append(posicionActual[1:3])
 
 
             if (limitacion>nivel) & (carga >0):
-                hijos = self.getExpandibles(posicionActual, nivel+1, carga-1)
+                hijos = self.getExpandibles(posicionActual[1:3], nivel+1, carga-1)
 
             if len(hijos)!=0:
                 pila.extend(hijos)
@@ -77,7 +79,7 @@ class Profundidad:
             #print pila
 
 
-        if posicionActual[0:2]!=posicionMeta:
+        if posicionActual[1:3]!=posicionMeta:
             solucion=[]
 
 
