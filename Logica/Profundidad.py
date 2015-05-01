@@ -47,7 +47,7 @@ class Profundidad:
         posicionActual = self.miAmbiente.posIniRobotConNivel()
         posicionMeta = self.miAmbiente.posMeta()
         
-        limitacion = 19
+        limitacion = pow(self.miAmbiente.tamano, 2)
 
         pila = [posicionActual]
 
