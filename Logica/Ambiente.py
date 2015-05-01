@@ -18,11 +18,11 @@ class Ambiente:
             for j in range(0, self.tamano):
                 self.matriz[i][j] = int(splitLinea[j])
                 if ((int(splitLinea[j])) == 0):
+                    self.initPos.append(0) #nivel o costo (profundiad y asterisco respectivamente) inicial 0
                     self.initPos.append(i)
                     self.initPos.append(j)
-                    self.initPos.append(0) #nivel inicial 0
                     self.initPos.append(6) #carga inicial 6
-                    self.initPos.append('')
+                    self.initPos.append('') #solucion para asterisco
                 if ((int(splitLinea[j])) == 7):
                     self.metaPos.append(i)
                     self.metaPos.append(j)
