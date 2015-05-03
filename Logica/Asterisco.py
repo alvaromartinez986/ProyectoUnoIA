@@ -58,7 +58,12 @@ class Asterisco:
         posicionActual = self.miAmbiente.posIniRobotConSln()
         self.meta = self.miAmbiente.posMeta()
 
-        pos_ac_costo_heur= [self.getDistanciaL(posicionActual[0], posicionActual[1])]+ [0] + posicionActual + [6] + [''] + [0]
+        cargaMax = 6
+        tipoHeur=1
+        if tipoHeur ==1:
+            pos_ac_costo_heur= [self.getDistanciaL(posicionActual[0], posicionActual[1])]+ [0] + posicionActual + [cargaMax] + [''] + [0]
+        elif tipoHeur ==2:
+            pos_ac_costo_heur= [self.getLSobreCarga(posicionActual[0], posicionActual[1], cargaMax)]+ [0] + posicionActual + [cargaMax] + [''] + [0]
 
         self.queuePrio.put(pos_ac_costo_heur)
         posicionActual  = pos_ac_costo_heur[2:]
@@ -69,16 +74,16 @@ class Asterisco:
         while (posicionActual[0:2]!=self.meta)& (not (self.queuePrio.empty())):
             nodosExp+=1
             pos_ac_costo_heur = self.queuePrio.get()
-
+            print pos_ac_costo_heur
             posicionActual = pos_ac_costo_heur[2:]
             nivel = posicionActual[4]
             carga = posicionActual[2]
 
             if self.miAmbiente.getPosition(posicionActual[0],posicionActual[1])== 6:
-                carga =6
+                carga =cargaMax
 
             if (limitacion>nivel) & (carga >0):
-                self.getExpandiblesAsterisco(posicionActual, pos_ac_costo_heur[1],carga,1)
+                self.getExpandiblesAsterisco(posicionActual, pos_ac_costo_heur[1],carga,tipoHeur)
 
 
         #la solucion se filtra en el nivel de la meta
