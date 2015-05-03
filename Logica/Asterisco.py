@@ -10,32 +10,51 @@ class Asterisco:
         self.miAmbiente = Ambiente("archivo.txt")
         self.buscarAsterico()
 
-
-    def getExpandiblesAsterisco(self, pos, costo, carga):
+    #tipo de heuristica: 1 para distanciaL y 2 para distanciaLsobreCarga
+    def getExpandiblesAsterisco(self, pos, costo, carga, tipoHeur):
         #abajo, derecha, izquierda, arriba
         #arriba
         #si entrega -1 o 1, no existe la posicion o hay una pared respectivamente
         if(abs(self.miAmbiente.getPosition(pos[0]-1,pos[1]))!=1):
-            self.queuePrio.put([self.getDistanciaL(pos[0]-1,pos[1]) + costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            if tipoHeur==1:
+                self.queuePrio.put([self.getDistanciaL(pos[0]-1,pos[1]) + costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            elif tipoHeur==2:
+                self.queuePrio.put([self.getLSobreCarga(pos[0]-1,pos[1], carga-1) + costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), costo+self.miAmbiente.getCosto(pos[0]-1,pos[1]), pos[0]-1,pos[1], carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
         #izquierda
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]-1))!=1):
-            self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]-1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), costo+self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            if tipoHeur==1:
+                self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]-1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), costo+self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            elif tipoHeur==2:
+                self.queuePrio.put([self.getLSobreCarga(pos[0], pos[1]-1, carga-1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]-1), costo+self.miAmbiente.getCosto(pos[0],pos[1]-1), pos[0],pos[1]-1, carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
         #derech
         if(abs(self.miAmbiente.getPosition(pos[0],pos[1]+1))!=1):
-            self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]+1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), costo+self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            if tipoHeur==1:
+                self.queuePrio.put([self.getDistanciaL(pos[0], pos[1]+1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), costo+self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            elif tipoHeur==2:
+                self.queuePrio.put([self.getLSobreCarga(pos[0], pos[1]+1, carga-1) + costo+ self.miAmbiente.getCosto(pos[0],pos[1]+1), costo+self.miAmbiente.getCosto(pos[0],pos[1]+1), pos[0],pos[1]+1, carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
         #abajo
         if(abs(self.miAmbiente.getPosition(pos[0]+1,pos[1]))!=1):
-            self.queuePrio.put([self.getDistanciaL(pos[0]+1, pos[1]) + costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]), costo+self.miAmbiente.getCosto(pos[0]+1,pos[1]), pos[0]+1,pos[1], carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            if tipoHeur==1:
+                self.queuePrio.put([self.getDistanciaL(pos[0]+1, pos[1]) + costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]), costo+self.miAmbiente.getCosto(pos[0]+1,pos[1]), pos[0]+1,pos[1], carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
+            elif tipoHeur==2:
+                self.queuePrio.put([self.getLSobreCarga(pos[0]+1, pos[1], carga-1) + costo+ self.miAmbiente.getCosto(pos[0]+1,pos[1]), costo+self.miAmbiente.getCosto(pos[0]+1,pos[1]), pos[0]+1,pos[1], carga-1, pos[3] + ' (' + str(pos[0]) + ',' + str(pos[1])+ ')', pos[4]+1])
 
     #calcula la distancia en l a la meta a partir de un punto x, y hasta una meta
     def getDistanciaL(self, x, y):
         return abs(self.meta[0]-x)+abs(self.meta[1]-y)
 
+    def getLSobreCarga(self, x, y, carga):
+        if [x,y]==self.meta:
+            res = 0 #la distancia en L es 0, por ende la division es 0
+        else:
+            if carga>0:
+                res = self.getDistanciaL(x,y)/carga #en el unico caso en que no seria admisible es cuando la carga es 0, porque la heuristica seria infinito, pero ps el costo a la meta no se cual seria como por ahi no se puede llegar a la meta
+            else:
+                res = float("inf")
+        return res
+
 
     def buscarAsterico(self):
-
-
-
         posicionActual = self.miAmbiente.posIniRobotConSln()
         self.meta = self.miAmbiente.posMeta()
 
@@ -46,9 +65,11 @@ class Asterisco:
 
         limitacion = pow(self.miAmbiente.tamano, 2)
 
+        nodosExp=0
         while (posicionActual[0:2]!=self.meta)& (not (self.queuePrio.empty())):
+            nodosExp+=1
             pos_ac_costo_heur = self.queuePrio.get()
-            print pos_ac_costo_heur
+
             posicionActual = pos_ac_costo_heur[2:]
             nivel = posicionActual[4]
             carga = posicionActual[2]
@@ -57,14 +78,18 @@ class Asterisco:
                 carga =6
 
             if (limitacion>nivel) & (carga >0):
-                self.getExpandiblesAsterisco(posicionActual, pos_ac_costo_heur[1],carga)
+                self.getExpandiblesAsterisco(posicionActual, pos_ac_costo_heur[1],carga,1)
 
-        if posicionActual[0:2]!=self.meta:
-            solucion=['']
 
         #la solucion se filtra en el nivel de la meta
         solucion = posicionActual[3].split(' ') + [('('+ str(self.meta[0]) + ',' + str(self.meta[1]) + ')')]
-        print solucion
+        if posicionActual[0:2]!=self.meta:
+            solucion=['']
+
+        print "costo ", pos_ac_costo_heur[1]
+        print "nodos expandidos ", nodosExp
+        print "solucion ",solucion
+
         return solucion
 
 
