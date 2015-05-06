@@ -82,7 +82,7 @@ class Asterisco:
         while (posicionActual[0:2]!=self.meta)& (not (self.queuePrio.empty())):
             nodosExp+=1
             pos_ac_costo_heur = self.queuePrio.get()
-            print pos_ac_costo_heur
+            #print pos_ac_costo_heur
             posicionActual = pos_ac_costo_heur[2:]
             nivel = posicionActual[4]
             carga = posicionActual[2]
