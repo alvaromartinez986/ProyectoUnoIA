@@ -8,7 +8,6 @@ class Asterisco:
     def __init__(self):
         self.queuePrio = PriorityQueue()
         self.miAmbiente = Ambiente("archivo.txt")
-        self.buscarAsterico()
         self.nodosCread = 0
 
     #tipo de heuristica: 1 para distanciaL y 2 para distanciaLsobreCarga
