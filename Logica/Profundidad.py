@@ -6,7 +6,6 @@ class Profundidad:
     def __init__(self):
         self.miAmbiente = Ambiente("archivo.txt")
         self.nodosCread = 0
-        self.buscarProfundidad()
 
 
 
