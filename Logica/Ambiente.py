@@ -33,7 +33,7 @@ class Ambiente:
         return self.initPos[0:4]
 
     def posIniRobotConSln(self):
-        return self.initPos
+        return self.initPos[1:3]
 
     def posMeta(self):
         return self.metaPos
@@ -62,7 +62,7 @@ class Ambiente:
          x valor de la fila del ambiente
          y valor de la columna del ambiente
         '''
-        if (self.getPosition(x, y) == 2):
+        if (self.getPosition(x, y) == 2)|(self.getPosition(x, y) == 0)|(self.getPosition(x, y) == 7):
             return 1
         elif (self.getPosition(x, y) == 3):
             return 3

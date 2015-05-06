@@ -8,8 +8,9 @@ class Asterisco:
     def __init__(self):
         self.queuePrio = PriorityQueue()
         self.miAmbiente = Ambiente("archivo.txt")
-        self.buscarAsterico()
         self.nodosCread = 0
+        self.buscarAsterico()
+
 
     #tipo de heuristica: 1 para distanciaL y 2 para distanciaLsobreCarga
     def getExpandiblesAsterisco(self, pos, costo, carga, tipoHeur):
@@ -77,6 +78,14 @@ class Asterisco:
         limitacion = pow(self.miAmbiente.tamano, 2)
 
         nodosExp=0
+        nodosExp=0
+        while (posicionActual[0:2]!=self.meta)& (not (self.queuePrio.empty())):
+            nodosExp+=1
+            pos_ac_costo_heur = self.queuePrio.get()
+            #print pos_ac_costo_heur
+            posicionActual = pos_ac_costo_heur[2:]
+            nivel = posicionActual[4]
+            carga = posicionActual[2]
 
         while (posicionActual[0:2]!=self.meta)& (not (self.queuePrio.empty())):
             nodosExp+=1
@@ -92,6 +101,10 @@ class Asterisco:
             if (limitacion>nivel) & (carga >0):
                 self.getExpandiblesAsterisco(posicionActual, pos_ac_costo_heur[1],carga,tipoHeur)
 
+        #la solucion se filtra en el nivel de la meta
+        solucion = posicionActual[3].split(' ') + [('('+ str(self.meta[0]) + ',' + str(self.meta[1]) + ')')]
+        if posicionActual[0:2]!=self.meta:
+            solucion=['']
 
         #la solucion se filtra en el nivel de la meta
         solucion = posicionActual[3].split(' ') + [('('+ str(self.meta[0]) + ',' + str(self.meta[1]) + ')')]
@@ -106,4 +119,15 @@ class Asterisco:
         return solucion
 
 
-obj = Asterisco()
+        return solucion_estructurada
+
+    def estructurarSln(self, sln):
+        solucion_estructurada = []
+        for sln_u in sln[1:]:
+            sln_u_div = sln_u.split(',')
+            x = int(sln_u_div[0][1:])
+            y = int(sln_u_div[1][:len(sln_u_div[1])-1])
+            solucion_estructurada.append([x,y])
+        return  solucion_estructurada
+
+aster = Asterisco()
