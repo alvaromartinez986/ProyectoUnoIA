@@ -61,8 +61,8 @@
       <file leaf-file-name="Asterisco.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Logica/Asterisco.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.5319693" vertical-offset="254" max-vertical-offset="1770">
-              <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.50127876" vertical-offset="254" max-vertical-offset="1770">
+              <caret line="30" column="103" selection-start-line="30" selection-start-column="103" selection-end-line="30" selection-end-column="103" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -211,6 +211,7 @@
     <property name="FullScreen" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DS2/Proyecto/SGC/SGC" />
     <property name="recentsLimit" value="5" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -581,7 +582,13 @@
       <option name="project" value="LOCAL" />
       <updated>1430879638403</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="workspace.xml">
+      <created>1430879724176</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1430879724176</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -980,8 +987,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Logica/Asterisco.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.5319693" vertical-offset="254" max-vertical-offset="1770">
-          <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.50127876" vertical-offset="254" max-vertical-offset="1770">
+          <caret line="30" column="103" selection-start-line="30" selection-start-column="103" selection-end-line="30" selection-end-column="103" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
