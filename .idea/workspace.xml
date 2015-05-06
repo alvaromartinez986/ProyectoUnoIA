@@ -5,14 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ddc47910-9fcb-45a7-a3bd-0718ab4a841f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Vista/iconosIA/energia.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Vista/iconosIA/meta.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Vista/iconosIA/restringido.png" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Vista/iconosIA.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Vista/main.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Vista/proyectoIa1.xpyqt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vista/mainwindow.ui" afterPath="$PROJECT_DIR$/Vista/mainwindow.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Vista/mainwindow.py" afterPath="$PROJECT_DIR$/Vista/mainwindow.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="IA.iws" />
@@ -583,7 +575,13 @@
       <option name="project" value="LOCAL" />
       <updated>1430877701195</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="workspace.xml">
+      <created>1430879638403</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1430879638403</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -635,7 +633,8 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/fermat986/ProyectoUnoIA into brayan&#10;&#10;Conflicts:&#10;&#9;Logica/Asterisco.py&#10;Asterisco funcionando con Heuristica." />
     <MESSAGE value="Vista aun no mezclada con logica." />
     <MESSAGE value="Funcionando todo... Profundidad no tiene costo ni nodos." />
-    <option name="LAST_COMMIT_MESSAGE" value="Funcionando todo... Profundidad no tiene costo ni nodos." />
+    <MESSAGE value="workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
