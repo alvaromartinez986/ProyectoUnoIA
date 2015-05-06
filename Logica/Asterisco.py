@@ -77,6 +77,8 @@ class Asterisco:
 
         nodosExp=0
 
+        nivelMax = 0
+        
         while (posicionActual[0:2]!=self.meta)& (not (self.queuePrio.empty())):
             nodosExp+=1
             pos_ac_costo_heur = self.queuePrio.get()
@@ -85,6 +87,10 @@ class Asterisco:
             nivel = posicionActual[4]
             carga = posicionActual[2]
 
+            #nivel maximo
+            if(nivel>nivelMax):
+                nivelMax=nivel
+                
             if self.miAmbiente.getPosition(posicionActual[0],posicionActual[1])== 6:
                 carga =cargaMax
 
@@ -97,13 +103,16 @@ class Asterisco:
         if posicionActual[0:2]!=self.meta:
             solucion=['']
 
+        ramificacion = self.nodosCread**(1/float(nivelMax))
+        
         #solucion como lista, no string
         solucion_estructurada = self.estructurarSln(solucion)
 
+        print "nodos Creados", self.nodosCread
         print "costo ", pos_ac_costo_heur[1]
         print "nodos expandidos ", nodosExp
+        print "ramificacion ", ramificacion
         print "solucion ",solucion_estructurada
-        print "nodos creados ", self.nodosCread
 
 
 
