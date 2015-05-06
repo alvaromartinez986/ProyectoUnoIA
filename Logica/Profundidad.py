@@ -61,6 +61,8 @@ class Profundidad:
         print posicionActual[1:3]
 
         solucion = []
+        
+        nivelMax = 0
         #abajo, derecha, izquierda, arriba
         while (posicionActual[1:3]!=posicionMeta)&(len(pila)!=0):
             hijos=[]
@@ -70,6 +72,11 @@ class Profundidad:
             nivel= posicionActual[0]
             carga = posicionActual[3]
             costo = posicionActual[4]
+            
+            #nivel maximo
+            if(nivel>nivelMax):
+                nivelMax=nivel
+            
             if self.miAmbiente.getPosition(posicionActual[1],posicionActual[2])== 6:
                 carga =6
 
@@ -88,6 +95,8 @@ class Profundidad:
            # print pila
 
 
+        ramificacion = self.nodosCread**(1/float(nivelMax))
+
         if posicionActual[1:3]!=posicionMeta:
             solucion=[]
 
@@ -96,6 +105,8 @@ class Profundidad:
         print "nodos Creados", self.nodosCread
         print "costo ", posicionActual[4]
         print "nodos expandidos ", nodosExp
+        print "ramificacion ", ramificacion
         print "solucion ",solucion[0:nivel+1]
+        
         return solucion[0:nivel+1]
 
