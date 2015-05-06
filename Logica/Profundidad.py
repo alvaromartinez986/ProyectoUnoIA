@@ -5,7 +5,6 @@ class Profundidad:
 
     def __init__(self):
         self.miAmbiente = Ambiente("archivo.txt")
-        self.buscarProfundidad
 
 
 
@@ -39,7 +38,6 @@ class Profundidad:
         return hijos
     
 
-    @property
     def buscarProfundidad(self):
 
         nivel = 0
@@ -86,6 +84,4 @@ class Profundidad:
 
         #la solucion se filtra en el nivel de la meta
         print "solucion ",solucion[0:nivel+1]
-        return solucion[0:nivel]
-
-profund = Profundidad()
+        return solucion[0:nivel+1]
